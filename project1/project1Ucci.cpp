@@ -23,10 +23,10 @@ int main()
   // initialize the all the matrices
   int MatrixA [matrixArows][matrixAcolumns];
   int MatrixB [matrixBrows][matrixBcolumns];
-  int MatrixC [matrixBrows][matrixAcolumns];
-  for (int b=0; b < matrixBrows; b++)
+  int MatrixC [matrixArows][matrixBcolumns];
+  for (int b=0; b < matrixBcolumns; b++)
     {
-      for (int c=0; c < matrixAcolumns; c++)
+      for (int c=0; c < matrixArows; c++)
 	{ MatrixC[b][c] = 0;
 	}
     }
@@ -47,6 +47,18 @@ int main()
 	}
     }
 
+  // calculate matrixC
+  for (int h=0; h < matrixArows; h++)
+    {
+      for (int i=0; i < matrixAcolumns; i++)
+	{
+	  for (int j=0; j < matrixBcolumns; j++)
+	    {
+	      MatrixC[h][j] += MatrixA[h][i] * MatrixB[i][j]; 
+	    }
+	}
+    }
+    
   // output matrixA 
   for (int b=0; b < matrixArows; b++)
     {
@@ -69,5 +81,16 @@ int main()
       cout << "\n";
     }
 
+  // output matrixC
+
+  for (int f=0; f < matrixArows; f++)
+    {
+      for ( int g=0; g < matrixBcolumns; g++)
+	{
+	  cout << MatrixC[g][f];
+	  cout << " ";
+	}
+      cout << "\n";
+    }
   return 0;
 }
